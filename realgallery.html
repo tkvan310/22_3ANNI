@@ -3,74 +3,87 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=1200">
     <title>Luxury Portfolio & Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
-    <style>
-      body {
-        /* Đưa về một màu đen nhất quán */
+  <style>
+    html, body {
         background-color: #000000;
         color: #f8fafc;
         font-family: "Playfair Display", serif;
-      }
-      .cursive {
+        
+        /* Ép trình duyệt không được nhỏ hơn 1200px */
+        min-width: 1200px; 
+        width: 1200px;
+        margin: 0 auto;
+        overflow-x: auto; /* Hiện thanh cuộn ngang nếu màn hình quá nhỏ */
+    }
+
+    /* 2. Cố định khung chứa nội dung */
+    .container {
+        width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    /* Các thành phần trang trí giữ nguyên */
+    .cursive {
         font-family: "Dancing Script", cursive;
-      }
-      /* Làm mượt thanh cuộn */
-      ::-webkit-scrollbar {
+    }
+
+    /* Thanh cuộn (Scrollbar) */
+    ::-webkit-scrollbar {
         width: 6px;
-      }
-      ::-webkit-scrollbar-track {
+    }
+    ::-webkit-scrollbar-track {
         background: #000000;
-      }
-      ::-webkit-scrollbar-thumb {
+    }
+    ::-webkit-scrollbar-thumb {
         background: #312e81;
         border-radius: 10px;
-      }
-      .royal-line {
+    }
+
+    /* Đường kẻ hoàng gia */
+    .royal-line {
         height: 1px;
-        background: linear-gradient(
-          to right,
-          transparent,
-          #aa771c,
-          transparent
-        );
+        background: linear-gradient(to right, transparent, #aa771c, transparent);
         width: 100%;
-        margin: 2rem 0; /* Giảm margin để bớt trống */
+        margin: 2rem 0;
         display: flex;
         justify-content: center;
         align-items: center;
         position: relative;
-      }
-      .royal-ornament {
+    }
+
+    .royal-ornament {
         position: absolute;
-        /* Sửa màu nền trùng với nền mới */
         background: #000000;
         padding: 0 20px;
         color: #aa771c;
-      }
-      .heart {
+    }
+
+    /* Hiệu ứng trái tim rơi */
+    .heart {
         position: absolute;
         color: rgba(255, 105, 180, 0.4);
-        top : 0;
+        top: 0;
         font-size: 100px;
         animation: moveHearts 5s linear infinite;
         z-index: -1;
-      }
-      @keyframes moveHearts {
-        0% {
-          transform: translateY(100vh) rotate(0deg);
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(-10vh) rotate(360deg);
-          opacity: 0;
-        }
-      }
- #music-btn {
+    }
+
+    @keyframes moveHearts {
+        0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Nút nhạc - Giữ ở góc màn hình dựa trên 1200px */
+    #music-btn {
         position: fixed;
         bottom: 18px;
-        right: 18px;
+        /* Để nút nhạc luôn nằm trong khung 1200px nếu muốn, hoặc giữ fixed theo màn hình */
+        right: 18px; 
         background: rgba(255, 255, 255, 0.85);
         border: none;
         border-radius: 50%;
@@ -81,8 +94,8 @@
         cursor: pointer;
         z-index: 999;
         backdrop-filter: blur(6px);
-      }
-    </style>
+    }
+</style>
   </head>
   <body class="antialiased">
     <header class="text-gray-400 bg-black/80 backdrop-blur-md body-font fixed w-full z-50 top-0 border-b border-white/10">
