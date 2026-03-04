@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Ultimate Scrapbook</title>
+    <style>
+      /* --- 1. GIAO DIỆN CHUNG --- */
+      body {
+        background-color: black;
+        color: white;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        perspective: 2000px;
+        font-family: "Segoe UI", Arial, sans-serif;
+        overflow: hidden;
+      }
+
+      /* Hiệu ứng trái tim bay */
+      .heart {
+        position: absolute;
+        color: rgba(255, 105, 180, 0.4);
+        font-size: 20px;
+        animation: moveHearts 5s linear infinite;
+        z-index: -1;
+      }
+      @keyframes moveHearts {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* --- 2. CẤU TRÚC CUỐN SÁCH (3/4 MÀN HÌNH) --- */
+      .book {
+        position: relative;
+        width: 40vw; /* Chiếm 3/4 chiều rộng màn hình */
+        height: 90vh; /* Chiếm gần trọn chiều cao màn hình */
+        max-width: 1000px;
+      }
+
+      .page {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        border: 6px solid #ffffff;
+        box-sizing: border-box;
+        cursor: pointer;
+        transition:
+          transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1),
+          opacity 0.8s;
+        transform-origin: left;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        backface-visibility: hidden;
+      }
+
+      /* --- 3. ẢNH TRÀN VIỀN (FIT 100%) --- */
+      .page img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit:contain; /* Đảm bảo ảnh luôn lấp đầy không để lại khoảng trắng */
+        filter: grayscale(100%);
+        transition: 0.8s ease;
+        z-index: 1;
+      }
+
+      .page:hover img {
+        filter: grayscale(0%);
+        transform: scale(1.05);
+      }
+
+      /* Lớp phủ mờ phía dưới để nhìn rõ chữ */
+      .content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 40px 20px;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.9) 20%,
+          transparent
+        );
+        text-align: center;
+        z-index: 2; /* Nằm trên ảnh */
+      }
+
+      /* --- 4. HIỆU ỨNG LẬT TRANG --- */
+      .page.flipped {
+        transform: rotateY(-140deg) translateY(-150px) scale(0.6);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .num {
+        background: #f7a912;
+        color: black;
+        padding: 10px 25px;
+        font-weight: bold;
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        transform: rotate(5deg);
+        z-index: 10;
+        font-size: 1.5rem;
+        border-radius: 5px;
+      }
+
+      h2 {
+        color: #f7a912;
+        margin: 5px 0;
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      }
+      p {
+        color: #fff;
+        font-size: 1.3rem;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+      }
+
+      button {
+        margin-top: 15px;
+        background: #f7a912;
+        border: none;
+        cursor: pointer;
+        padding: 12px 25px;
+        font-weight: bold;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      /* Thứ tự các trang */
+      .page:nth-child(1) {
+        z-index: 8;
+      }
+      .page:nth-child(2) {
+        z-index: 7;
+      }
+      .page:nth-child(3) {
+        z-index: 6;
+      }
+      .page:nth-child(4) {
+        z-index: 5;
+      }
+      .page:nth-child(5) {
+        z-index: 4;
+      }
+      .page:nth-child(6) {
+        z-index: 3;
+      }
+      .page:nth-child(7) {
+        z-index: 2;
+      }
+      .page:nth-child(8) {
+        z-index: 1;
+      }
+     #music-btn {
+        position: fixed;
+        bottom: 18px;
+        right: 18px;
+        background: rgba(255, 255, 255, 0.85);
+        border: none;
+        border-radius: 50%;
+        width: 46px;
+        height: 46px;
+        font-size: 20px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        z-index: 999;
+        backdrop-filter: blur(6px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="book">
+      <div class="page" onclick="nextPage(this)">
+        <div class="num"></div>
+        <img src="1.png" alt="Trang 1" />
+        <div class="content"></div>
+      </div>
+
+      <div class="page" onclick="nextPage(this)">
+        <div class="num">#2</div>
+        <img src="link_anh_2.jpg" />
+        <div class="content"></div>
+      </div>
+
+      <div class="page" onclick="nextPage(this)">
+        <div class="num">#3</div>
+        <img src="link_anh_3.jpg" />
+        <div class="content">
+          <h2>Title 3</h2>
+          <p>Lời nhắn của bạn ở đây...</p>
+        </div>
+      </div>
+
+      <div class="page" onclick="nextPage(this)">
+        <div class="num">#4</div>
+        <img src="link_anh_4.jpg" />
+        <div class="content">
+          <h2>Title 4</h2>
+          <p>Lời nhắn của bạn ở đây...</p>
+        </div>
+      </div>
+
+      <div class="page" onclick="nextPage(this)">
+        <div class="num">#5</div>
+        <img src="link_anh_5.jpg" />
+        <div class="content">
+          <h2>Title 5</h2>
+          <p>Lời nhắn của bạn ở đây...</p>
+        </div>
+      </div>
+
+      <div class="page" onclick="nextPage(this)">
+        <div class="num">#6</div>
+        <img src="link_anh_6.jpg" />
+        <div class="content">
+          <h2>Title 6</h2>
+          <p>Lời nhắn của bạn ở đây...</p>
+        </div>
+      </div>
+
+      <div class="page" onclick="nextPage(this)">
+        <div class="num">#7</div>
+        <img src="link_anh_7.jpg" />
+        <div class="content">
+          <h2>Title 7</h2>
+          <p>Lời nhắn của bạn ở đây...</p>
+        </div>
+      </div>
+
+      <div class="page">
+        <div class="num">#8</div>
+        <img src="link_anh_8.jpg" />
+        <div class="content">
+          <h2>The End ❤️</h2>
+          <p>Hành trình của chúng mình</p>
+          <button onclick="resetBook()">Xem lại từ đầu</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "♥";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }
+      setInterval(createHeart, 300);
+
+      function nextPage(page) {
+        page.classList.add("flipped");
+      }
+
+      function resetBook() {
+        const pages = document.querySelectorAll(".page");
+        pages.forEach((p) => p.classList.remove("flipped"));
+      }
+    </script>
+    <audio id="bgm" loop>
+      <source src="nhacnen2.mp3" type="audio/mpeg" />
+    </audio>
+
+    <button id="music-btn">🔈</button>
+    <script>
+      const music = document.getElementById("bgm");
+      const btn = document.getElementById("music-btn");
+      let playing = false;
+
+      btn.onclick = () => {
+        if (!playing) {
+          music.play();
+          btn.innerText = "🔊";
+        } else {
+          music.pause();
+          btn.innerText = "🔈";
+        }
+        playing = !playing;
+      };
+    </script>
+  </body>
+</html>

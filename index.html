@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Love Letter</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Dancing+Script:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --rose: #9c4a57;
+        --paper: #f7efe9;
+      }
+
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f3e6e8;
+        overflow: hidden;
+        perspective: 1200px;
+        font-family: "Playfair Display", serif;
+      }
+
+      /* HEART FLOAT */
+      .heart {
+        position: fixed;
+        bottom: -20px;
+        color: #c15a6b;
+        font-size: 12px;
+        animation: floatUp 7s linear forwards;
+        opacity: 0.7;
+      }
+      @keyframes floatUp {
+        to {
+          transform: translateY(-110vh) scale(1.6);
+          opacity: 0;
+        }
+      }
+
+      /* ENVELOPE 3D */
+      #envelope-wrapper {
+        width: 320px;
+        height: 210px;
+        cursor: pointer;
+        transform-style: preserve-3d;
+      }
+      .envelope {
+        width: 100%;
+        height: 100%;
+        background: var(--rose);
+        border-radius: 6px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        position: relative;
+        transform-style: preserve-3d;
+        transition:
+          transform 0.9s ease,
+          opacity 0.6s ease 0.4s;
+      }
+      .flap {
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-left: 160px solid transparent;
+        border-right: 160px solid transparent;
+        border-top: 105px solid #8b3f4b;
+        transform-origin: top;
+        transition: 0.7s ease;
+      }
+      .front-text {
+        position: absolute;
+        bottom: 14px;
+        width: 100%;
+        text-align: center;
+        color: #f7efe9;
+        letter-spacing: 4px;
+      }
+      .open .flap {
+        transform: rotateX(180deg);
+      }
+      .open {
+        transform: rotateX(20deg) rotateY(-15deg) scale(1.05);
+        opacity: 0;
+      }
+
+      /* CARD */
+      #card-wrapper {
+        display: none;
+        position: absolute;
+        width: 90%;
+        max-width: 680px;
+        transform: rotateX(-20deg) scale(0.9);
+        opacity: 0;
+        transition: 0.9s ease;
+      }
+      #card-wrapper.show {
+        display: block;
+        transform: rotateX(0) scale(1);
+        opacity: 1;
+      }
+      .postcard {
+        background: var(--paper);
+        border: 10px solid var(--rose);
+        padding: 30px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .header h1 {
+        letter-spacing: 4px;
+        margin: 0;
+      }
+      .month {
+        color: var(--rose);
+        font-style: italic;
+      }
+      .story-p {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: 1s;
+      }
+      .story-p.show {
+        opacity: 1;
+        transform: none;
+      }
+      .signature {
+        text-align: right;
+        margin-top: 30px;
+        font-style: italic;
+        color: var(--rose);
+      }
+      #music-btn {
+        position: fixed;
+        bottom: 18px;
+        right: 18px;
+        background: rgba(255, 255, 255, 0.85);
+        border: none;
+        border-radius: 50%;
+        width: 46px;
+        height: 46px;
+        font-size: 20px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        z-index: 999;
+        backdrop-filter: blur(6px);
+      }
+      /* DECOR IMAGES */
+      .postcard {
+        position: relative;
+        overflow: visible;
+      }
+
+      .deco {
+        position: absolute;
+        pointer-events: none;
+        z-index: 5;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.18));
+      }
+
+      /* Bướm góc phải trên */
+      .butterfly {
+        top: -50px;
+        right: -60px;
+        width: 120px;
+        animation: floatButterfly 5s ease-in-out infinite;
+      }
+
+      /* Hoa ly lớn bên phải giống mẫu */
+      .lily-right {
+        bottom: -40px;
+        right: -80px;
+        width: 170px;
+        animation: floatFlower 4s ease-in-out infinite;
+      }
+
+      /* Hoa nhỏ góc trái */
+      .blossom-left {
+        bottom: -30px;
+        left: -60px;
+        width: 130px;
+        animation: floatFlower 4.5s ease-in-out infinite;
+      }
+
+      @keyframes floatButterfly {
+        0%,
+        100% {
+          transform: translateY(0) rotate(2deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(-2deg);
+        }
+      }
+
+      @keyframes floatFlower {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div id="envelope-wrapper">
+      <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="front-text">LOVE LETTER</div>
+      </div>
+    </div>
+
+    <div id="card-wrapper">
+      <div class="postcard">
+        <img src="butterfly.png" class="deco butterfly" />
+        <img src="blossom.png" class="deco blossom-left" />
+        <div class="header">
+          <h1>NHẬT KÝ 1 NĂM DÀNH CHO ANH</h1>
+          <div class="month">Ngày 22 tháng 3</div>
+        </div>
+        <p class="story-p">Dear yêu dấu của em, anh cưnggg</p>
+        <p class="story-p">
+          Mình yêu nhau nhanh thật anh nhỉ, em không ngờ đã tròn 1 năm rồi. Em
+          vẫn còn thấy cái hôm mà em lên ủi nhờ quần áo của em cơ.
+        </p>
+        <p class="story-p">
+          Thật mừng vì mình vẫn ở bên nhau cho đến tận bây giờ, phải cảm ơn anh
+          thật nhiều vì đã bước vào cuộc đời em....để em hiểu được cách yêu
+          thương, chia sẻ và được bao bọc. Em lúc nào cũng mong anh thật nhiều
+          điều tốt đẹp vì em thật sự yêu anh khá nhiều đấy.
+        </p>
+        <p class="story-p">
+          Năm trước là anh. May mắn thay năm nay cũng là anh, hy vọng nhiều năm
+          sau nữa vẫn sẽ là anh, Kiên nhé. Cảm ơn anh vì đã mang đến cho em một
+          tình yêu xinh như vậy ạ.
+        </p>
+        <a href="gallery.html">
+          <div class="signature">yêu dấu của anh, Chip ❤️</div></a
+        >
+      </div>
+    </div>
+
+    <script>
+      const env = document.getElementById("envelope");
+      const wrap = document.getElementById("envelope-wrapper");
+      const card = document.getElementById("card-wrapper");
+      const ps = document.querySelectorAll(".story-p");
+
+      wrap.onclick = () => {
+        env.classList.add("open");
+        setTimeout(() => {
+          wrap.style.display = "none";
+          card.classList.add("show");
+          ps.forEach((p, i) =>
+            setTimeout(() => p.classList.add("show"), i * 1200),
+          );
+          startHearts();
+        }, 900);
+      };
+
+      function startHearts() {
+        setInterval(() => {
+          const h = document.createElement("div");
+          h.className = "heart";
+          h.innerText = "❤";
+          h.style.left = Math.random() * 100 + "vw";
+          h.style.fontSize = 12 + Math.random() * 12 + "px";
+          document.body.appendChild(h);
+          setTimeout(() => h.remove(), 7000);
+        }, 600);
+      }
+    </script>
+    <audio id="bgm" loop>
+      <source src="music.mp3" type="audio/mpeg" />
+    </audio>
+
+    <button id="music-btn">🔈</button>
+    <script>
+      const music = document.getElementById("bgm");
+      const btn = document.getElementById("music-btn");
+      let playing = false;
+
+      btn.onclick = () => {
+        if (!playing) {
+          music.play();
+          btn.innerText = "🔊";
+        } else {
+          music.pause();
+          btn.innerText = "🔈";
+        }
+        playing = !playing;
+      };
+    </script>
+  </body>
+</html>
