@@ -7,22 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
     <style>
-      html, body {
+        html, body {
             background-color: #000000;
             color: #f8fafc;
             font-family: "Playfair Display", serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* Chống tràn ngang */
+            margin: 0 auto;
+            overflow-x: auto;
         }
 
-        /* Container co giãn linh hoạt */
         .container {
             width: 100% !important;
             max-width: 1200px !important; /* Chỉ rộng tối đa 1200px trên máy tính */
             margin: 0 auto !important;
             padding: 0 1rem; /* Tạo khoảng trống nhẹ ở 2 mép đt */
         }
+
         /* Hiệu ứng nổi ảnh tự động */
         .reveal-on-scroll {
             opacity: 0;
@@ -115,81 +114,81 @@
     <div class="grid grid-cols-2 gap-6 mb-20">
         
         <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
-            <img alt="art" class="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" src="anh11.png" />
+            <img alt="art" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh11.png" />
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
             <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                 <p class="text-indigo-400 cursive text-xl">Bức ảnh đầu tiên</p>
-                <h3 class="text-2xl font-bold text-white mb-2">23-2</h3>
+                <h3 class="text-xs font-bold text-white mb-2">23-2</h3>
                 <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">Mấy hôm đầu gặp nhau đáng yêu anh nhỉ ?</p>
             </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
-            <img alt="luxury" class="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" src="link_anh_3.jpg" />
+            <img alt="luxury" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="link_anh_3.jpg" />
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
             <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                 <p class="text-indigo-400 cursive text-xl">FIRST MESSAGES</p>
-                <h3 class="text-2xl font-bold text-white mb-2">Hồi đấy anh trẻ con thế</h3>
+                <h3 class="text-xs font-bold text-white mb-2">Hồi đấy anh trẻ con thế</h3>
                 <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">nhưng mà cũng kiuuuu</p>
             </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
-            <img alt="vintage" class="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" src="anh12.png" />
+            <img alt="vintage" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh12.png" />
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
             <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                 <p class="text-indigo-400 cursive text-xl">First Date</p>
-                <h3 class="text-2xl font-bold text-white mb-2">Hôm đấy anh run quên hết kịch bản</h3>
+                <h3 class="text-xs font-bold text-white mb-2">Hôm đấy anh run quên hết kịch bản</h3>
                 <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">Hahaha, nhưng nhẫn đẹp lắm.</p>
             </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
-            <img alt="art" class="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" src="anh13.png" />
+            <img alt="art" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh13.png" />
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
             <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                 <p class="text-indigo-400 cursive text-xl">Second Date</p>
-                <h3 class="text-2xl font-bold text-white mb-2">Vuốt tóc lên xem sao ạ</h3>
+                <h3 class="text-xs font-bold text-white mb-2">Vuốt tóc lên xem sao ạ</h3>
                 <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">Nhìn như ông chú nhưng vẫn đẹp trai lắm.</p>
             </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
-            <img alt="luxury" class="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" src="anh14.png" />
+            <img alt="luxury" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh14.png" />
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
             <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                 <p class="text-indigo-400 cursive text-xl">Trốn đánh bóng đi ăn</p>
-                <h3 class="text-2xl font-bold text-white mb-2">Mua nhiều cho em thế</h3>
+                <h3 class="text-xs font-bold text-white mb-2">Mua nhiều cho em thế</h3>
                 <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">"Anh không biết làm đồ handmade"</p>
             </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
-            <img alt="vintage" class="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" src="anh18.png" />
+            <img alt="vintage" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh18.png" />
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
             <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                 <p class="text-indigo-400 cursive text-xl">Next meeting</p>
-                <h3 class="text-2xl font-bold text-white mb-2">Bị ốm nên mắt sưng</h3>
+                <h3 class="text-xs font-bold text-white mb-2">Bị ốm nên mắt sưng</h3>
                 <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">Tức ghê, vẫn giữ chuỗi nyc à?</p>
             </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
-          <img alt="art" class="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" src="anh16.png" />
+          <img alt="art" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh16.png" />
           <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
           <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
             <p class="text-indigo-400 cursive text-xl">Đi ăn bún chả</p>
-            <h3 class="text-2xl font-bold text-white mb-2">Quán này chắc chắn ngon</h3>
+            <h3 class="text-xs font-bold text-white mb-2">Quán này chắc chắn ngon</h3>
             <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">"Bình thường, không ngon bằng chỗ anh."</p>
           </div>
         </div>
 
         <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
-          <img alt="luxury" class="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" src="anh15.png" />
+          <img alt="luxury" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh15.png" />
           <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
           <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
             <p class="text-indigo-400 cursive text-xl">Sinh nhật đầu tiên</p>
-            <h3 class="text-2xl font-bold text-white mb-2">Chụp cho em đẹp vào</h3>
+            <h3 class="text-xs font-bold text-white mb-2">Chụp cho em đẹp vào</h3>
             <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">Quán này đẹp vl, sau mình lại đi tiếp nhé.</p>
           </div>
         </div>
@@ -207,7 +206,7 @@
       <div class="container px-5 pb-10 mx-auto flex flex-wrap items-center">
         <div class="lg:w-1/2 w-full mb-12 lg:mb-0">
           <div class="relative p-2 border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
-            <img alt="feature" class="object-contain object-center w-full h-full rounded-2xl grayscale hover:grayscale-0 transition duration-1000" src="anh2.png" />
+            <img alt="feature" class="object-cover object-center w-full h-full rounded-2xl grayscale hover:grayscale-0 transition duration-1000" src="anh2.png" />
           </div>
         </div>
         <div class="lg:w-1/2 w-full lg:pl-16">
@@ -238,24 +237,24 @@
       <div class="flex flex-wrap -m-2">
         <div class="flex flex-wrap w-1/2">
           <div class="md:p-2 p-1 w-full">
-            <img alt="gallery" class="w-full h-80 object-contain object-center block rounded-2xl border border-white/5 hover:border-indigo-500/50 transition duration-500" src="anh4.png" />
+            <img alt="gallery" class="w-full h-80 object-cover object-center block rounded-2xl border border-white/5 hover:border-indigo-500/50 transition duration-500" src="anh4.png" />
           </div>
           <div class="md:p-2 p-1 w-1/2">
-            <img alt="gallery" class="w-full object-contain h-48 object-center block rounded-2xl border border-white/5" src="anh5.png" />
+            <img alt="gallery" class="w-full object-cover h-48 object-center block rounded-2xl border border-white/5" src="anh5.png" />
           </div>
           <div class="md:p-2 p-1 w-1/2">
-            <img alt="gallery" class="w-full object-contain h-48 object-center block rounded-2xl border border-white/5" src="anh7.png" />
+            <img alt="gallery" class="w-full object-cover h-48 object-center block rounded-2xl border border-white/5" src="anh7.png" />
           </div>
         </div>
         <div class="flex flex-wrap w-1/2">
           <div class="md:p-2 p-1 w-1/2">
-            <img alt="gallery" class="w-full object-contain h-48 object-center block rounded-2xl border border-white/5" src="anh8.png" />
+            <img alt="gallery" class="w-full object-cover h-48 object-center block rounded-2xl border border-white/5" src="anh8.png" />
           </div>
           <div class="md:p-2 p-1 w-1/2">
-            <img alt="gallery" class="w-full object-contain h-48 object-center block rounded-2xl border border-white/5" src="anh10.png" />
+            <img alt="gallery" class="w-full object-cover h-48 object-center block rounded-2xl border border-white/5" src="anh10.png" />
           </div>
           <div class="md:p-2 p-1 w-full">
-            <img alt="gallery" class="w-full h-80 object-contain object-center block rounded-2xl border border-white/5" src="anh9.png" />
+            <img alt="gallery" class="w-full h-80 object-cover object-center block rounded-2xl border border-white/5" src="anh9.png" />
           </div>
         </div>
       </div>
@@ -271,7 +270,7 @@
 
     <section class="relative mt-20 h-[60vh] flex items-center justify-center overflow-hidden mb-12 ">
       <img src="anh21.png" 
-           class="absolute inset-0 w-full h-full object-contain grayscale-[20%] hover:scale-105 transition-transform duration-[3s]" 
+           class="absolute inset-0 w-full h-full object-cover grayscale-[20%] hover:scale-105 transition-transform duration-[3s]" 
            alt="Big Showcase" />
       <div class="absolute inset-0 bg-black/40"></div>
       <div class="relative z-10 text-center px-4">
@@ -292,7 +291,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="group">
           <div class="relative aspect-square overflow-hidden rounded-2xl bg-zinc-900 border border-white/5 mb-6">
-            <img class="object-contain w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80" alt="product" />
+            <img class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80" alt="product" />
             <button class="absolute bottom-4 left-4 right-4 bg-white text-black py-3 rounded-xl font-bold opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-xl">Add to Cart</button>
           </div>
           <h3 class="text-gray-500 text-xs tracking-[0.2em] mb-1 uppercase">Watch</h3>
