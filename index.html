@@ -1,303 +1,361 @@
-<!doctype html>
-<html lang="vi">
-  <head>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Love Letter</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Dancing+Script:wght@600&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="viewport" content="width=1200">
+    <title>Dành cho Kiên nhé.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600&display=swap" rel="stylesheet" />
     <style>
-      :root {
-        --rose: #9c4a57;
-        --paper: #f7efe9;
-      }
-
-      body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #f3e6e8;
-        overflow: hidden;
-        perspective: 1200px;
-        font-family: "Playfair Display", serif;
-      }
-
-      /* HEART FLOAT */
-      .heart {
-        position: fixed;
-        bottom: -20px;
-        color: #c15a6b;
-        font-size: 12px;
-        animation: floatUp 7s linear forwards;
-        opacity: 0.7;
-      }
-      @keyframes floatUp {
-        to {
-          transform: translateY(-110vh) scale(1.6);
-          opacity: 0;
+        html, body {
+            background-color: #000000;
+            color: #f8fafc;
+            font-family: "Playfair Display", serif;
+            min-width: 1200px; 
+            width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
         }
-      }
 
-      /* ENVELOPE 3D */
-      #envelope-wrapper {
-        width: 320px;
-        height: 210px;
-        cursor: pointer;
-        transform-style: preserve-3d;
-      }
-      .envelope {
-        width: 100%;
-        height: 100%;
-        background: var(--rose);
-        border-radius: 6px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        position: relative;
-        transform-style: preserve-3d;
-        transition:
-          transform 0.9s ease,
-          opacity 0.6s ease 0.4s;
-      }
-      .flap {
-        position: absolute;
-        top: 0;
-        width: 0;
-        height: 0;
-        border-left: 160px solid transparent;
-        border-right: 160px solid transparent;
-        border-top: 105px solid #8b3f4b;
-        transform-origin: top;
-        transition: 0.7s ease;
-      }
-      .front-text {
-        position: absolute;
-        bottom: 14px;
-        width: 100%;
-        text-align: center;
-        color: #f7efe9;
-        letter-spacing: 4px;
-      }
-      .open .flap {
-        transform: rotateX(180deg);
-      }
-      .open {
-        transform: rotateX(20deg) rotateY(-15deg) scale(1.05);
-        opacity: 0;
-      }
-
-      /* CARD */
-      #card-wrapper {
-        display: none;
-        position: absolute;
-        width: 90%;
-        max-width: 680px;
-        transform: rotateX(-20deg) scale(0.9);
-        opacity: 0;
-        transition: 0.9s ease;
-      }
-      #card-wrapper.show {
-        display: block;
-        transform: rotateX(0) scale(1);
-        opacity: 1;
-      }
-      .postcard {
-        background: var(--paper);
-        border: 10px solid var(--rose);
-        padding: 30px;
-        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
-      }
-      .header {
-        text-align: center;
-        margin-bottom: 20px;
-      }
-      .header h1 {
-        letter-spacing: 4px;
-        margin: 0;
-      }
-      .month {
-        color: var(--rose);
-        font-style: italic;
-      }
-      .story-p {
-        opacity: 0;
-        transform: translateY(12px);
-        transition: 1s;
-      }
-      .story-p.show {
-        opacity: 1;
-        transform: none;
-      }
-      .signature {
-        text-align: right;
-        margin-top: 30px;
-        font-style: italic;
-        color: var(--rose);
-      }
-      #music-btn {
-        position: fixed;
-        bottom: 18px;
-        right: 18px;
-        background: rgba(255, 255, 255, 0.85);
-        border: none;
-        border-radius: 50%;
-        width: 46px;
-        height: 46px;
-        font-size: 20px;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        cursor: pointer;
-        z-index: 999;
-        backdrop-filter: blur(6px);
-      }
-      /* DECOR IMAGES */
-      .postcard {
-        position: relative;
-        overflow: visible;
-      }
-
-      .deco {
-        position: absolute;
-        pointer-events: none;
-        z-index: 5;
-        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.18));
-      }
-
-      /* Bướm góc phải trên */
-      .butterfly {
-        top: -50px;
-        right: -60px;
-        width: 120px;
-        animation: floatButterfly 5s ease-in-out infinite;
-      }
-
-      /* Hoa ly lớn bên phải giống mẫu */
-      .lily-right {
-        bottom: -40px;
-        right: -80px;
-        width: 170px;
-        animation: floatFlower 4s ease-in-out infinite;
-      }
-
-      /* Hoa nhỏ góc trái */
-      .blossom-left {
-        bottom: -30px;
-        left: -60px;
-        width: 130px;
-        animation: floatFlower 4.5s ease-in-out infinite;
-      }
-
-      @keyframes floatButterfly {
-        0%,
-        100% {
-          transform: translateY(0) rotate(2deg);
+        .container {
+            width: 1200px !important;
+            max-width: 1200px !important;
+            margin: 0 auto !important;
         }
-        50% {
-          transform: translateY(-10px) rotate(-2deg);
-        }
-      }
 
-      @keyframes floatFlower {
-        0%,
-        100% {
-          transform: translateY(0);
+        /* Hiệu ứng nổi ảnh tự động */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: scale(0.8) translateY(30px);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        50% {
-          transform: translateY(-6px);
+
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
         }
-      }
+
+        .cursive { font-family: "Dancing Script", cursive; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000000; }
+        ::-webkit-scrollbar-thumb { background: #312e81; border-radius: 10px; }
+
+        .royal-line {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #aa771c, transparent);
+            width: 100%;
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .royal-ornament {
+            position: absolute;
+            background: #000000;
+            padding: 0 20px;
+            color: #aa771c;
+        }
+
+        #music-btn {
+            position: fixed;
+            bottom: 18px;
+            right: 18px; 
+            background: rgba(255, 255, 255, 0.85);
+            border: none;
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
+            font-size: 20px;
+            z-index: 999;
+            backdrop-filter: blur(6px);
+        }
     </style>
-  </head>
-  <body>
-    
-    <div id="envelope-wrapper">
-      <div class="envelope" id="envelope">
-        <div class="flap"></div>
-        <div class="front-text">LOVE LETTER</div>
+</head>
+<body class="antialiased">
+    <header class="text-gray-400 bg-black/80 backdrop-blur-md fixed w-[1200px] z-50 top-0 border-b border-white/10">
+      <div class="container flex flex-wrap p-5 flex-row items-center">
+        <a class="flex title-font font-medium items-center text-white">
+          <span class="ml-3 text-2xl cursive text-indigo-500">anh cưngg</span>
+        </a>
+        <nav class="ml-auto mr-auto flex flex-wrap items-center text-sm uppercase tracking-widest justify-center">
+          <a href="#" class="mr-8 hover:text-white transition">Ảnh</a>
+          <a href="#" class="mr-8 hover:text-white transition">Nổi bật</a>
+          <a href="#" class="mr-8 hover:text-white transition">Kỷ niệm</a>
+          <a href="#" class="hover:text-white transition">Hứa hẹn</a>
+        </nav>
+        <button class="bg-indigo-600 py-2 px-6 rounded-full text-white text-sm font-bold">Get Started</button>
       </div>
-    </div>
+    </header>
 
-    <div id="card-wrapper">
-      <div class="postcard">
-        <img src="butterfly.png" class="deco butterfly" />
-        <img src="blossom.png" class="deco blossom-left" />
-        <div class="header">
-          <h1>NHẬT KÝ 1 NĂM DÀNH CHO ANH</h1>
-          <div class="month">Ngày 22 tháng 3</div>
+    <div class="container pt-80">
+        <div class="flex flex-col text-center w-full mb-60">
+            <h2 class="text-indigo-400 tracking-widest font-medium cursive text-3xl">Scrapbooks cho anh Kiên</h2>
+            <h1 class="text-6xl font-bold text-white uppercase tracking-tighter mb-4">Kỷ niệm <span class="italic font-light">𝟙 year</span></h1>
+            <div class="h-1 w-20 bg-indigo-500 mx-auto rounded"></div>
         </div>
-        <p class="story-p">Dear yêu dấu của em, anh cưnggg</p>
-        <p class="story-p">
-          Mình yêu nhau nhanh thật anh nhỉ, em không ngờ đã tròn 1 năm rồi. Em
-          vẫn còn thấy cái hôm mà em lên ủi nhờ quần áo của em cơ.
-        </p>
-        <p class="story-p">
-          Thật mừng vì mình vẫn ở bên nhau cho đến tận bây giờ, phải cảm ơn anh
-          thật nhiều vì đã bước vào cuộc đời em....để em hiểu được cách yêu
-          thương, chia sẻ và được bao bọc. Em lúc nào cũng mong anh thật nhiều
-          điều tốt đẹp vì em thật sự yêu anh khá nhiều đấy.
-        </p>
-        <p class="story-p">
-          Năm trước là anh. May mắn thay năm nay cũng là anh, hy vọng nhiều năm
-          sau nữa vẫn sẽ là anh, Kiên nhé. Cảm ơn anh vì đã mang đến cho em một
-          tình yêu xinh như vậy ạ.
-        </p>
-        <a href="gallery.html">
-          <div class="signature">yêu dấu của anh, Chip ❤️</div></a
-        >
+
+        <div class="container mx-auto px-5">
+    <div class="grid grid-cols-2 gap-6 mb-20">
+        
+        <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
+            <img alt="art" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh11.png" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+            <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <p class="text-indigo-400 cursive text-xl">Bức ảnh đầu tiên</p>
+                <h3 class="text-2xl font-bold text-white mb-2">23-2</h3>
+                <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">"Mấy hôm đầu gặp nhau đáng yêu anh nhỉ ?"</p>
+            </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
+            <img alt="luxury" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="link_anh_3.jpg" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+            <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <p class="text-indigo-400 cursive text-xl">FIRST MESSAGES</p>
+                <h3 class="text-2xl font-bold text-white mb-2">"Hồi đấy anh trẻ con thế"</h3>
+                <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">"nhưng mà cũng kiuuuu"</p>
+            </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
+            <img alt="vintage" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh12.png" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+            <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <p class="text-indigo-400 cursive text-xl">First Date</p>
+                <h3 class="text-2xl font-bold text-white mb-2">Hôm đấy anh run quên hết kịch bản</h3>
+                <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">"Hahaha, nhưng nhẫn đẹp lắm."</p>
+            </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
+            <img alt="art" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh13.png" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+            <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <p class="text-indigo-400 cursive text-xl">Second Date</p>
+                <h3 class="text-2xl font-bold text-white mb-2">"Vuốt tóc lên xem sao ạ"</h3>
+                <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">"Nhìn như ông chú nhưng vẫn đẹp trai lắm."</p>
+            </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
+            <img alt="luxury" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh14.png" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+            <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <p class="text-indigo-400 cursive text-xl">Trốn đánh bóng đi ăn</p>
+                <h3 class="text-2xl font-bold text-white mb-2">"Mua nhiều cho em thế"</h3>
+                <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">"Anh không biết làm đồ handmade"</p>
+            </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
+            <img alt="vintage" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh18.png" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+            <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <p class="text-indigo-400 cursive text-xl">Next meeting</p>
+                <h3 class="text-2xl font-bold text-white mb-2">'Anh bị ốm nên mắt sưng ạ'</h3>
+                <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">"Tức ghê, anh vẫn giữ chuỗi nyc à?"</p>
+            </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
+          <img alt="luxury" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh15.png" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+          <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <p class="text-indigo-400 cursive text-xl">Sinh nhật đầu tiên</p>
+            <h3 class="text-2xl font-bold text-white mb-2">"Chụp cho em đẹp vào"</h3>
+            <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">"Quán này đẹp vl, sau mình lại đi tiếp nhé."</p>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
+          <img alt="art" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh20.png" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+          <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <p class="text-indigo-400 text-sm mb-2 cursive text-xl"> Gloria - mang nhiều kỷ niệm. </p>
+            <h3 class="text-2xl font-bold text-white mb-2">Bế mạc ở trường ấy, hôm ấy em trên sân khấu lung linh khummm?</h3>
+            <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 leading-relaxed">Quên cái hôm em bán sống bán chết đòi về đi nhé. </p>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
+          <img alt="luxury" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh19.png" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+          <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <p class="text-indigo-400 text-sm mb-2 cursive text-xl">Công viên điều hòa</p>
+            <h3 class="text-2xl font-bold text-white mb-2">Flash</h3>
+            <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500">Cái mồm anh nhìn kiu vl.</p>
+          </div>
+        </div>
+
+        <div class="relative group overflow-hidden rounded-2xl aspect-[4/5] border border-white/5">
+          <img alt="vintage" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="anh17.png" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+          <div class="absolute bottom-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <p class="text-indigo-400 text-sm mb-2 cursive text-xl">Quán Cafe LÁ nè </p>
+            <h3 class="text-2xl font-bold text-white mb-2">"Mẹ bảo nhanh còn về anh ạ "</h3>
+            <p class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500">LÁ chứ không phải LÁNG nhé, em không nhầm nữa đâu.</p>
+          </div>
+          
+
+        </div> </div>
+    <div class="container mx-auto px-5">
+      <div class="royal-line">
+        <div class="royal-ornament">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L10.5 8.5L4 10L10.5 11.5L12 18L13.5 11.5L20 10L13.5 8.5L12 2Z"/></svg>
+        </div>
       </div>
     </div>
 
-    <script>
-      const env = document.getElementById("envelope");
-      const wrap = document.getElementById("envelope-wrapper");
-      const card = document.getElementById("card-wrapper");
-      const ps = document.querySelectorAll(".story-p");
+    <section class="py-20">
+      <div class="container px-5 pb-10 mx-auto flex flex-wrap items-center">
+        <div class="lg:w-1/2 w-full mb-12 lg:mb-0">
+          <div class="relative p-2 border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
+            <img alt="feature" class="object-cover object-center w-full h-full rounded-2xl grayscale hover:grayscale-0 transition duration-1000" src="anh2.png" />
+          </div>
+        </div>
+        <div class="lg:w-1/2 w-full lg:pl-16">
+          <div class="space-y-12">
+            <div class="flex items-start group">
+              <div class="flex-shrink-0 w-14 h-14 bg-indigo-500/10 text-indigo-500 rounded-2xl flex items-center justify-center border border-indigo-500/20 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                <svg fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+              </div>
+              <div class="ml-6">
+                <h2 class="text-white text-xl font-bold mb-2 tracking-wide uppercase">Từng con đường mình đi qua, từng nơi mình đặt chân đến</h2>
+                <p class="text-gray-400 leading-relaxed">Thú thực là yêu anh, mở mang cho em nhiều điều lắm. Với một sinh viên năm nhất như 
+                    em thôi mà đã được trải nghiệm gần như cả cái Hà Nội rồi anh ạ, anh cho em chả thiếu thứ gì Kiên ạ. Thật sự mấy dòng code này
+                    nó không thấm bằng những điều mà anh dành cho em. Em yêu anh vì sự chân thành, vì cái tâm anh thực sự đặt vào tình yêu mà 
+                    chả vướng bận một chút lợi ích hay đòi hỏi nào, thật sự em yêu anh lắm và em cũng thương anh vì vạn điều thật khó nói. 
+                    Sau cùng anh vẫn chọn ở lại với em dù em có vô lí hay cộc cằn thế nào, những lúc nghĩ như vậy, em thật sự thấy rất có lỗi với anh
+                    nhưng chẳng thể nào mở lời nổi, xin lỗi vì sự sốc nổi và cọc cằn của em, dù sao Kiên của em cũng biết là em yêu anh nhiều mà nhỉ.
+                    Chắc là ông trời biết em ít bạn bè, sợ em lủi thủi một mình nên mới đưa anh đến để yêu thương em đến như vậy. Mình mãi yêu nhau
+                    lâu thật lâu nữa anh nhé. Yêu anhhhhhh! Và nếu sau này em có nói một lời tạm biệt nào, anh hãy giữ em lại để tụi mình
+                    sẽ có những phút giây hạnh phúc như thế này nhé ạ.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      wrap.onclick = () => {
-        env.classList.add("open");
-        setTimeout(() => {
-          wrap.style.display = "none";
-          card.classList.add("show");
-          ps.forEach((p, i) =>
-            setTimeout(() => p.classList.add("show"), i * 1200),
-          );
-          startHearts();
-        }, 900);
-      };
+    <div class="container mx-auto px-5">
+      <div class="royal-line">
+        <div class="royal-ornament">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L10.5 8.5L4 10L10.5 11.5L12 18L13.5 11.5L20 10L13.5 8.5L12 2Z"/></svg>
+        </div>
+      </div>
+    </div>
 
-      function startHearts() {
-        setInterval(() => {
-          const h = document.createElement("div");
-          h.className = "heart";
-          h.innerText = "❤";
-          h.style.left = Math.random() * 100 + "vw";
-          h.style.fontSize = 12 + Math.random() * 12 + "px";
-          document.body.appendChild(h);
-          setTimeout(() => h.remove(), 7000);
-        }, 600);
-      }
-    </script>
-    <audio id="bgm" loop>
-      <source src="music.mp3" type="audio/mpeg" />
-    </audio>
+   
+   <section class="py-10 md:py-20 container mx-auto px-2 md:px-10">
+  <div class="flex flex-row w-full gap-2 md:gap-4">
+    
+    <div class="flex flex-col w-1/2 gap-2 md:gap-4">
+      <div class="w-full">
+        <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-white/10 aspect-[3/4]">
+          <img class="absolute inset-0 w-full h-full object-cover object-top" src="anh4.png" alt="kỷ niệm" />
+        </div>
+      </div>
+      
+      <div class="flex flex-row gap-2 md:gap-4 w-full">
+        <div class="w-1/2 aspect-square rounded-xl overflow-hidden border border-white/10">
+          <img class="w-full h-full object-cover" src="anh5.png" />
+        </div>
+        <div class="w-1/2 aspect-square rounded-xl overflow-hidden border border-white/10">
+          <img class="w-full h-full object-cover" src="anh7.png" />
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col w-1/2 gap-2 md:gap-4">
+      <div class="flex flex-row gap-2 md:gap-4 w-full">
+        <div class="w-1/2 aspect-square rounded-xl overflow-hidden border border-white/10">
+          <img class="w-full h-full object-cover" src="anh8.png" />
+        </div>
+        <div class="w-1/2 aspect-square rounded-xl overflow-hidden border border-white/10">
+          <img class="w-full h-full object-cover" src="anh10.png" />
+        </div>
+      </div>
+
+      <div class="w-full">
+        <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-white/10 aspect-[3/4]">
+          <img class="absolute inset-0 w-full h-full object-cover object-top" src="anh9.png" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <div class="container mx-auto px-5">
+      <div class="royal-line">
+        <div class="royal-ornament">
+          <span class="cursive text-2xl gold-gradient">Một chút tâm đắc của em đóaaaaa</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="relative mt-20 h-[60vh] flex items-center justify-center overflow-hidden mb-12 ">
+      <img src="anh21.png" 
+           class="absolute inset-0 w-full h-full object-cover grayscale-[20%] hover:scale-105 transition-transform duration-[3s]" 
+           alt="Big Showcase" />
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="relative z-10 text-center px-4">
+        <h2 class="text-white text-5xl md:text-7xl font-bold uppercase tracking-widest leading-tight">"Tấm ảnh em thích nhất nè"</h2>
+        <p class="cursive text-3xl text-indigo-400 mt-4">"Đẹp phải không anh"</p>
+      </div>
+    </section>
+
+    <section class="py-12 container mx-auto px-5">
+      <div class="flex justify-between items-end mb-12">
+        <div>
+          <h2 class="text-indigo-400 cursive text-3xl">Gấp lại trang sách : Đó là tất cả tấm lòng của em trong 365 ngày bên anh ạ.</h2>
+          <h1 class="text-4xl font-bold text-white uppercase tracking-tighter"></h1>
+        </div>
+        <a href="gallery.html" class="text-indigo-400 border-b border-indigo-500 pb-1 hover:text-indigo-300 transition cursor-pointer font-bold text-sm tracking-widest uppercase">Bấm vào đây đi ạ</a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="group">
+          <div class="relative aspect-square overflow-hidden rounded-2xl bg-zinc-900 border border-white/5 mb-6">
+            <img class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" src="1.png" alt="product" />
+            <button class="absolute bottom-4 left-4 right-4 bg-white text-black py-3 rounded-xl font-bold opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-xl">Em yêu anh nhiều!!!!</button>
+          </div>
+          <h3 class="text-gray-500 text-xs tracking-[0.2em] mb-1 uppercase"></h3>
+          <h2 class="text-white text-lg font-bold mb-1"></h2>
+          <p class="text-indigo-400 font-bold"></p>
+        </div>
+        </div>
+    </section>
 
     <button id="music-btn">🔈</button>
+    <audio id="bgm" loop><source src="nhacnen2.mp3" type="audio/mpeg"></audio>
+
     <script>
+
+      // Nhạc nền
       const music = document.getElementById("bgm");
       const btn = document.getElementById("music-btn");
       let playing = false;
-
       btn.onclick = () => {
-        if (!playing) {
-          music.play();
-          btn.innerText = "🔊";
-        } else {
-          music.pause();
-          btn.innerText = "🔈";
-        }
+        if (!playing) { music.play(); btn.innerText = "🔊"; } 
+        else { music.pause(); btn.innerText = "🔈"; }
         playing = !playing;
       };
+
+      // TỰ ĐỘNG NỔI ẢNH KHI CUỘN
+      document.addEventListener("DOMContentLoaded", function() {
+        const allImages = document.querySelectorAll('img');
+        allImages.forEach(img => img.classList.add('reveal-on-scroll'));
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+          });
+        }, { threshold: 0.1 });
+        allImages.forEach(img => observer.observe(img));
+      });
     </script>
-  </body>
+</body>
 </html>
